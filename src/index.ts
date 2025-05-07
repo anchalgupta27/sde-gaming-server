@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import * as dotenv from 'dotenv';
 import userRoutes from "./routes/user.routes";
 import productRoutes from "./routes/product.routes"
+import cartRoutes from "./routes/cart.routes"
 import cors from 'cors';
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(cors({
   }));
 app.use('/api', userRoutes)
 app.use('/api', productRoutes);
+app.use("/api", cartRoutes);
 app.listen(8080, () => {
     console.log('Server running on http://localhost:8080');
 });
