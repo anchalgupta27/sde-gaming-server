@@ -51,6 +51,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv = __importStar(require("dotenv"));
 const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const product_routes_1 = __importDefault(require("./routes/product.routes"));
+const cors_1 = __importDefault(require("cors"));
 dotenv.config();
 const app = (0, express_1.default)();
 mongoose_1.default.connect((_a = process.env.MONGO_URI) !== null && _a !== void 0 ? _a : "")
@@ -62,6 +63,9 @@ mongoose_1.default.connection.once('open', () => __awaiter(void 0, void 0, void 
     yield ((_a = mongoose_1.default.connection.db) === null || _a === void 0 ? void 0 : _a.collection('users').createIndex({ email: 1 }, { unique: true }));
 }));
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({
+    origin: '*'
+}));
 app.use('/api', user_routes_1.default);
 app.use('/api', product_routes_1.default);
 app.listen(8080, () => {

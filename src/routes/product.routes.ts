@@ -12,4 +12,12 @@ router.get('/products', async (req: Request,res: Response, next: NextFunction) =
     }
 }) 
 
+router.get('/products/:id', async (req: Request,res: Response, next: NextFunction) => {
+    try {  
+        await productController.getProductById(req, res);
+    } catch (error) {
+        next(error);  
+    }
+}) 
+
 export default router;

@@ -13,4 +13,4 @@ const orderSchema = new mongoose.Schema({
   status: { type: String, enum: ['pending', 'shipped', 'delivered'], default: 'pending' }
 }, { timestamps: true });
 
-export default mongoose.models.Order || mongoose.model('Order', orderSchema);
+export const Order = mongoose.model('Order', orderSchema);
