@@ -28,19 +28,19 @@ export class CartController {
                 cart = new Cart({ userId, products: [], totalAmount: 0 });
             }
 
-            // Check if the product already exists in the cart
             const existingProduct = cart.products.find(
-                (product) => product.productId.toString() === productId
-            );
-
-            if (existingProduct) {
-                // If product exists, update the quantity
+                (product) =>
+                  product.productId.toString() === productId &&
+                  product.size === size &&
+                  product.color === color
+              );
+              
+              if (existingProduct) {
                 existingProduct.quantity += quantity;
-            } else {
-                // If product doesn't exist, add a new product
+              } else {
                 cart.products.push({ productId, quantity, size, color, price, name });
-            }
-
+              }
+              
             // Recalculate the totalAmount
             cart.totalAmount = cart.products.reduce(
                 (total, product) => total + product.price! * product.quantity,
@@ -65,11 +65,10 @@ export class CartController {
     public async getCart(req: Request, res: Response) {
         try {
             const { userId } = req.params;
-
+            console.log(userId);
             const cart = await Cart.findOne({ userId })
-                .populate("products.productId", "name price stock imageUrl") // customize fields as needed
-                .populate("userId", "name email"); // optional if user details needed
-
+                .populate("products.productId", "name price stock imageUrl color size") 
+                .populate("userId", "name email"); 
             if (!cart) {
                 return res.status(404).json({ success: false, message: "Cart not found" });
             }

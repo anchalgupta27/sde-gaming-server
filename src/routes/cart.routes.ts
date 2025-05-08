@@ -13,7 +13,7 @@ router.post('/cart', async(req: Request, res: Response, next: NextFunction) => {
     }
 })
 
-router.get('/cart', async(req: Request, res: Response, next: NextFunction) => {
+router.get('/cart/:userId', async(req: Request, res: Response, next: NextFunction) => {
     try {
         await cartController.getCart(req, res);
     } catch (error) {
