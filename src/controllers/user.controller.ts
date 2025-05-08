@@ -14,4 +14,14 @@ export class UserController {
       return res.status(500).send(err);
     }
   }
+
+  public async findRiders(req: Request, res: Response) {
+    try {
+      const riders = await User.find({ roles: 'rider' }, '_id name email');
+      res.status(200).json(riders);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to fetch riders' });
+    }
+  }
 }

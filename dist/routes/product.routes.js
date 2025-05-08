@@ -24,4 +24,12 @@ router.get('/products', (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         next(error);
     }
 }));
+router.get('/products/:id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield productController.getProductById(req, res);
+    }
+    catch (error) {
+        next(error);
+    }
+}));
 exports.default = router;

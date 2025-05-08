@@ -13,20 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const order_controller_1 = require("../controllers/order.controller");
+const cart_controller_1 = require("../controllers/cart.controller");
 const router = express_1.default.Router();
-const orderController = new order_controller_1.OrderController();
-router.post('/cart/checkout', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const cartController = new cart_controller_1.CartController();
+router.post('/cart', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield orderController.checkoutCart(req, res);
+        console.log(req.body);
+        yield cartController.addProductsToCart(req, res);
     }
     catch (error) {
         next(error);
     }
 }));
-router.get("/orders", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/cart/:userId', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield orderController.getAllOrders(req, res);
+        yield cartController.getCart(req, res);
     }
     catch (error) {
         next(error);

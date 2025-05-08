@@ -51,6 +51,9 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv = __importStar(require("dotenv"));
 const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const product_routes_1 = __importDefault(require("./routes/product.routes"));
+const cart_routes_1 = __importDefault(require("./routes/cart.routes"));
+const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const order_routes_1 = __importDefault(require("./routes/order.routes"));
 const cors_1 = __importDefault(require("cors"));
 dotenv.config();
 const app = (0, express_1.default)();
@@ -68,6 +71,9 @@ app.use((0, cors_1.default)({
 }));
 app.use('/api', user_routes_1.default);
 app.use('/api', product_routes_1.default);
+app.use("/api", cart_routes_1.default);
+app.use('/api', auth_routes_1.default);
+app.use('/api', order_routes_1.default);
 app.listen(8080, () => {
     console.log('Server running on http://localhost:8080');
 });

@@ -10,6 +10,6 @@ const UserSchema = new Schema({
     name: String,
     email: { type: String, required: true, unique: true },
     googleId: { type: String },
-    roles: { type: [String], default: ['customer'] }
+    roles: { type: [String], default: ['customer'] },
 }, { timestamps: true });
 exports.User = mongoose_1.default.model('User', UserSchema);

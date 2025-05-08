@@ -12,4 +12,12 @@ router.post('/user', async (req: Request, res: Response, next: NextFunction) => 
   }
 });
 
+router.get("/rider", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await userController.findRiders(req, res);
+  } catch (error) {
+    next(error);
+  }
+})
+
 export default router;

@@ -23,5 +23,17 @@ class ProductController {
             }
         });
     }
+    getProductById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            try {
+                const product = yield Product_1.Product.findById(id);
+                return res.status(200).json(product);
+            }
+            catch (err) {
+                return res.status(500).send(err);
+            }
+        });
+    }
 }
 exports.ProductController = ProductController;

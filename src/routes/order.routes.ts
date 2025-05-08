@@ -13,4 +13,29 @@ router.post('/cart/checkout', async(req: Request, res: Response, next: NextFunct
     }
 })
 
+router.get("/orders", async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        await orderController.getAllOrders(req, res);
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.put("/order/update",  async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        await orderController.updateOrderDetails(req, res);
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/order/riders-with-orders', async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        await orderController.getRidersWithOrders(req, res)
+    } catch (error) {
+        next(error)
+    }
+});
+
+
 export default router;

@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const approvedEmailSchema = new mongoose_1.default.Schema({
     email: { type: String, required: true, unique: true },
-    roles: { type: [String], required: true }
+    roles: { type: [String], default: ['customer'] },
 }, { timestamps: true });
-exports.default = mongoose_1.default.models.ApprovedEmail || mongoose_1.default.model('ApprovedEmail', approvedEmailSchema);
+exports.default = mongoose_1.default.models.ApprovedEmail || mongoose_1.default.model('ApprovedEmail', approvedEmailSchema, 'ApprovedEmails');
