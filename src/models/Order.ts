@@ -23,6 +23,7 @@ const orderSchema = new mongoose.Schema({
       enum: ['assigned', 'picked-up', 'delivered'],
       default: 'assigned'
     },
+    name: String,
     assignedAt: Date,
     deliveredAt: Date
   }

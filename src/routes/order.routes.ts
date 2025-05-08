@@ -37,5 +37,13 @@ router.get('/order/riders-with-orders', async(req: Request, res: Response, next:
     }
 });
 
+router.get('/order/:id', async(req: Request, res: Response, next: NextFunction) => {
+    try {
+        await orderController.getOrderById(req, res);
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 export default router;
